@@ -12,6 +12,8 @@ public class AbstractChest : AbstractInteractableObject
     public VisualEffect curseOrbVFX;
     public Renderer curseOrbRenderer;
 
+    bool obtained = false;
+
 
 
 
@@ -31,9 +33,13 @@ public class AbstractChest : AbstractInteractableObject
 
     public override void OnInteract()
     {
-        CurseEffect();
+        if (!obtained)
+        {
+            CurseEffect();
+            obtained = true;
 
-        base.OnInteract();
+            base.OnInteract();
+        }
     }
 
 

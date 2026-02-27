@@ -33,5 +33,11 @@ public class PlayerInteract : MonoBehaviour
                 currentlySelected = obj;
             }
         }
+    
+        else
+        {
+            currentlySelected = null;
+            objectDisplayText.text = string.Empty;
+        }
     }
 }
