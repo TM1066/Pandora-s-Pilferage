@@ -11,10 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float baseSpeed = 4f;
     // [SerializeField] float runMultiplier = 2f;
 
-    // [Header("Grounding")]
-    // [SerializeField] float groundCheckRadius = 0.3f;
-    // [SerializeField] float groundCheckDistance = 0.4f;
-    // [SerializeField] LayerMask groundLayer;
+    [SerializeField] float airControlMultiplier = 0.5f;
+    [SerializeField] float jumpForce = 6f;
+
+    [Header("Grounding")]
+    [SerializeField] float groundCheckRadius = 0.3f;
+    [SerializeField] float groundCheckDistance = 0.4f;
+    [SerializeField] LayerMask groundLayer;
 
     // [Header("Stairs")]
     // [SerializeField] float stepHeight = 0.35f;
@@ -30,10 +33,10 @@ public class PlayerMovement : MonoBehaviour
         moveVector = context.ReadValue<Vector2>();
     }
 
-    // public void OnJump(InputAction.CallbackContext context)
-    // {
-    //     if (grounded) Jump();
-    // }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (grounded) Jump();
+    }
 
     void Start()
     {
@@ -99,12 +102,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    // void Jump()
-    // {
-    //     rig.linearVelocity = new Vector3(rig.linearVelocity.x, 0f, rig.linearVelocity.z);
-    //     rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-    //     grounded = false;
-    // }
+    void Jump()
+    {
+        rig.linearVelocity = new Vector3(rig.linearVelocity.x, 0f, rig.linearVelocity.z);
+        rig.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        grounded = false;
+    }
 
     // void HandleExtraGravity()
     // {
@@ -135,16 +138,21 @@ public class PlayerMovement : MonoBehaviour
     //     }
     // }
 
-    // bool IsGrounded()
+    bool IsGrounded()
+    {
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        return Physics.SphereCast(
+            origin,
+            groundCheckRadius,
+            Vector3.down,
+            out _,
+            groundCheckDistance,
+            groundLayer
+        );
+    }
+
+    // void OnDrawGizmos()
     // {
-    //     Vector3 origin = transform.position + Vector3.up * 0.1f;
-    //     return Physics.SphereCast(
-    //         origin,
-    //         groundCheckRadius,
-    //         Vector3.down,
-    //         out _,
-    //         groundCheckDistance,
-    //         groundLayer
-    //     );
+    //     Debug.r
     // }
 }
