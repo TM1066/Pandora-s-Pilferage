@@ -25,9 +25,9 @@ public class FirstPersonCameraMover : MonoBehaviour
     // Update is called once per frame
     void Update()
 {
-    Debug.Log("Local rot: " + transform.localEulerAngles);
-    Debug.Log("World rot: " + transform.eulerAngles);
-    HandleCam();
+    //Debug.Log("Local rot: " + transform.localEulerAngles);
+    //Debug.Log("World rot: " + transform.eulerAngles);
+    if (GameVariables.playerCanLook) HandleCam();
 }
 
     void HandleCam()
