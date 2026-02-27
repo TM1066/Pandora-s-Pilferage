@@ -43,7 +43,7 @@ public class FirstPersonCameraMover : MonoBehaviour
         float mouseY = verticalRot * mouseSensitivity * GameVariables.mouseSensitivityMulti * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -65f, 0f);
+        xRotation = Mathf.Clamp(xRotation, -65f, 65f);
 
         transform.localEulerAngles = new Vector3(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
