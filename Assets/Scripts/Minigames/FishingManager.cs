@@ -11,7 +11,8 @@ using UnityEngine.VFX;
 public class Fish
 {
     public string name;
-    public int foodWorth;
+    [Range(0f,1f)]
+    public float foodWorth;
     public GameObject fishSpawnPrefab;    
 
     public UnityEvent onCatch;
