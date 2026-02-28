@@ -16,12 +16,16 @@ public class DeathScreen : MonoBehaviour
         playerDead = true;
         this.gameObject.SetActive(true);
         deathText.text = "Cause of Death: " + cause;
+
+        GameObject.FindAnyObjectByType<GameManager>().ResetRigs();
+
+        StartCoroutine(WaitAndReturn());
     }
 
     IEnumerator WaitAndReturn()
     {
-        yield return new WaitForSeconds(1);
-        yield return new WaitUntil(() => Input.anyKeyDown);
+        yield return new WaitForSeconds(3);
+        
         SceneManager.LoadScene("Main Menu");
     }
 }

@@ -9,7 +9,7 @@ public static class GameVariables
     public static bool playerCanMove = true, playerCanLook = true, playerFishing = false;
 
     public static bool playerHasHunger = false, playerHasEnergy = false;
-    public static float playerHunger = 1, playerEnergy = 1;
+    public static float playerHunger = 1, playerEnergy = 1, playerScore = 0;
     
     public static float mouseSensitivityMulti = 1;
 
@@ -19,6 +19,8 @@ public static class GameVariables
         {"Tired", false},
         {"Bouncy",false},
         {"Icy",false},
-        {"Rage", false}
+        {"Rage", false},
+        {"Pitbull",false},
+        {"Competition",false}
     };
 }
