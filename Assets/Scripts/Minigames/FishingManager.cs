@@ -3,25 +3,14 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
-using Unity.VisualScripting;
-using UnityEngine.VFX;
 
 [Serializable]
 public class Fish
 {
     public string name;
     public string foodWorth;
-    public GameObject fishSpawnPrefab;    
-
-    public UnityEvent onCatch;
+    public Sprite sprite;    
 }
-
-// public class AudioFish : Fish
-// {
-
-    
-// }
 
 
 public class FishingManager : MonoBehaviour
@@ -31,18 +20,10 @@ public class FishingManager : MonoBehaviour
 
     public FishingSpot currentFishingSpot;
     public Animator fishAnimator;
-    //public SpriteRenderer fishRenderer;
+    public SpriteRenderer fishRenderer;
     public TextMeshProUGUI fishNameText;
     public float fishCheckDelay = 1;
     public float fishChance = 0.25f;
-
-    public GameObject fishRod, currentFishObject;
-    public Transform fishSpawnTrans;
-    public Animator fishRodAnimator;
-
-    public VisualEffect splashesEffect;
-
-    public Rigidbody playerRig;
 
     public void TryReelFish()
     {
@@ -58,76 +39,29 @@ public class FishingManager : MonoBehaviour
 
     public void ReelInFish()
     {
-        reeled = true;
-        var fish = Instantiate(fishThere.fishSpawnPrefab, fishSpawnTrans);
-        fish.transform.position = fishSpawnTrans.position;
-
-        currentFishObject = fish;
-        fishRodAnimator.SetTrigger("In");
+        fishAnimator.SetTrigger("Reel");
     }
 
 
     void OnEnable()
     {
-        GameVariables.playerFishing = true;
-
-        fishRod.SetActive(true);
-        //playerRig.isKinematic = true;
-        splashesEffect.Stop();
-        fishRodAnimator.SetTrigger("Out");
-
-
         StartCoroutine(CheckForFish());
     }
 
     void OnDisable()
     {
-        GameVariables.playerFishing = false;
-
         StopAllCoroutines();
-        //playerRig.isKinematic = false;
-    }
-
-    public void ExitFishing()
-    {
-        ScriptUtils.GivePlayerControl();
-        fishRodAnimator.SetTrigger("In");
-
-        Destroy(currentFishObject);
-
-        fishRod.SetActive(false);
-
-        this.transform.gameObject.SetActive(false);
-    }
-
-    public void Update()
-    {
-        // should be the bobber of the rod
-        //Camera.main.transform.LookAt(fishSpawnTrans);
     }
 
     IEnumerator CheckForFish()
     {
         while (true)
         {
-
-            if (reeled)
-            {
-                splashesEffect.Stop();
-                yield return new WaitUntil(() => Input.anyKeyDown);
-                reeled = false;
-                Destroy(currentFishObject);
-                fishThere = null;
-                fishRodAnimator.SetTrigger("Out");
-                yield return new WaitForSeconds(fishCheckDelay);
-                continue;
-            }
-
             if (UnityEngine.Random.Range(0f,1f) < fishChance)
             {
                 fishThere = ScriptUtils.GetRandomFromList(currentFishingSpot.possibleFish);
+                fishRenderer.sprite = fishThere.sprite;
                 fishNameText.text = fishThere.name;
-                splashesEffect.Play();
             }
             else fishThere = null;
 
