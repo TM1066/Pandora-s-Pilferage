@@ -13,8 +13,6 @@ public class Leaderboard : MonoBehaviour
 
     void Start()
     {
-        targetString = $"Pandora: {GameVariables.playerScore}\n";
-
         for (int i = 0; i < entries; i++)
         {
             targetString += $"{GetRandomName()}: {Random.Range(5, 125)}\n";
@@ -24,7 +22,7 @@ public class Leaderboard : MonoBehaviour
 
     void Update()
     {
-        leaderboardText.text = targetString;
+        leaderboardText.text = $"Pandora: {GameVariables.playerScore}\n" + targetString;
     }
 
     string GetRandomName()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6f8f3b9d94abab54eb058bb274b9b398
+guid: ff61cfba086c995418569451a8692d3c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: AppleTextuir.png
-    second: {fileID: 2100000, guid: b34f3eeaf77c9d348bdfbb07b292e42a, type: 2}
+      name: Bed Frame Mat
+    second: {fileID: 2100000, guid: 6174ac7d111c1f9468edaf95246330ef, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Stemp Text.png
-    second: {fileID: 2100000, guid: 568c9647e2101cb43b94565ecb52c9f4, type: 2}
+      name: Mattress Mat
+    second: {fileID: 2100000, guid: 9f2a8fb23c9435f4f9fd86eb77b2456c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillow Mat
+    second: {fileID: 2100000, guid: 7a0851406249b3d41b939c7fd4a887d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,7 +48,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -101,7 +106,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

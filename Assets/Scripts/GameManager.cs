@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public PhysicsMaterial bouncyMat;
     bool bouncied = false;
 
-    List<bool> rigKinematics = new();
+    //List<bool> rigKinematics = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,10 +25,10 @@ public class GameManager : MonoBehaviour
             {
                 if (rig.isKinematic)
                 {
-                    rigKinematics.Add(true);
+                    //rigKinematics.Add(true);
                     rig.isKinematic = false;
                 }
-                else rigKinematics.Add(false);
+                //else rigKinematics.Add(false);
 
                 rig.AddForce(new Vector3(Random.Range(-5,5),Random.Range(-5,5),Random.Range(-5,5)) * 5);
             }
@@ -40,12 +40,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResetRigs()
-    {
-        var rigs = GameObject.FindObjectsByType<Rigidbody>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
-        for (int i = 0; i < rigs.Length; i++)
-        {
-            rigs[i].isKinematic = rigKinematics[i];
-        }
-    }
+    // public void ResetRigs()
+    // {
+    //     var rigs = GameObject.FindObjectsByType<Rigidbody>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
+    //     for (int i = 0; i < rigs.Length; i++)
+    //     {
+    //         rigs[i].isKinematic = rigKinematics[i];
+    //     }
+    // }
 }

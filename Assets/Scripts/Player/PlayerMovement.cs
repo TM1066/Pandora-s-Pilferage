@@ -28,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveVector = Vector2.zero;
     bool grounded = true;
 
+    public void ChangeSpeed(float newBaseSpeed)
+    {
+        baseSpeed = newBaseSpeed;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();
@@ -84,22 +89,38 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 targetVelocity = inputDir * baseSpeed;
 
-        rig.linearVelocity = new Vector3(
-            targetVelocity.x,
-            rig.linearVelocity.y,
-            targetVelocity.z
-        );
+        if (!GameVariables.cursesActive["Icy"])
+        {
+            rig.linearVelocity = new Vector3(
+                targetVelocity.x,
+                rig.linearVelocity.y,
+                targetVelocity.z
+            );
+        }
+        else
+        {
+            // Keep existing momentum, only add player input
+            Vector3 currentVelocity = rig.linearVelocity;
 
-        // handle smoothly looking towards mvoement direction
-        // if (inputDir.sqrMagnitude > 0.01f)
-        // {
-        //     Quaternion targetRot = Quaternion.LookRotation(inputDir);
-        //     transform.rotation = Quaternion.Slerp(
-        //         transform.rotation,
-        //         targetRot,
-        //         Time.deltaTime * 10f
-        //     );
-        // }
+            Vector3 addedVelocity = new Vector3(
+                targetVelocity.x,
+                0f,
+                targetVelocity.z
+            );
+
+            rig.linearVelocity = new Vector3(
+                currentVelocity.x + addedVelocity.x,
+                currentVelocity.y,
+                currentVelocity.z + addedVelocity.z
+            );
+
+            float maxSpeed = 10f;
+
+            Vector3 horizontal = new Vector3(rig.linearVelocity.x, 0f, rig.linearVelocity.z);
+            horizontal = Vector3.ClampMagnitude(horizontal, maxSpeed);
+
+            rig.linearVelocity = new Vector3(horizontal.x, rig.linearVelocity.y, horizontal.z);
+        }
     }
 
 
