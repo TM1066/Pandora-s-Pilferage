@@ -1,16 +1,23 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public TextMeshProUGUI deathText;
+
+
+    public void Die(string cause)
     {
-        
+        this.gameObject.SetActive(true);
+        deathText.text = "Cause of Death: " + cause;
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator WaitAndReturn()
     {
-        
+        yield return new WaitForSeconds(1);
+        yield return new WaitUntil(() => Input.anyKeyDown);
+        SceneManager.LoadScene("Main Menu");
     }
 }

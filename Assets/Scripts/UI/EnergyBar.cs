@@ -11,6 +11,8 @@ public class EnergyBar : MonoBehaviour
     void Update()
     {
         slider.value = GameVariables.playerEnergy;
+
+        if (GameVariables.playerEnergy <= 0) FindAnyObjectByType<DeathScreen>(FindObjectsInactive.Include).Die("Tired.........zzzzzz");
     }
 
     void OnEnable()

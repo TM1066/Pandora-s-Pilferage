@@ -10,6 +10,8 @@ public class HungerBar : MonoBehaviour
     void Update()
     {
         slider.value = GameVariables.playerHunger;
+
+        if (GameVariables.playerHunger <= 0) FindAnyObjectByType<DeathScreen>(FindObjectsInactive.Include).Die("Hunger");
     }
 
     void OnEnable()
