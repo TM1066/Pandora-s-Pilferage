@@ -13,6 +13,7 @@ public class Fish
     public string name;
     [Range(-1f,1f)]
     public float foodWorth;
+    public int scoreWorth;
     public GameObject fishSpawnPrefab;    
 
     public UnityEvent onCatch;
@@ -119,6 +120,7 @@ public class FishingManager : MonoBehaviour
                 if (GameVariables.cursesActive["Hunger"])
                 {
                     GameVariables.playerHunger = Mathf.Clamp01(GameVariables.playerHunger + fishThere.foodWorth);
+                    GameVariables.playerScore += fishThere.scoreWorth;
                 }
 
                 fishThere = null;

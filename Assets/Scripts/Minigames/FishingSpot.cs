@@ -11,6 +11,11 @@ public class FishingSpot : AbstractInteractableObject
     public List<Fish> possibleFish = new();
 
     string originalName;
+
+    void Start()
+    {
+        originalName = displayName;
+    }
     public override void OnInteract()
     {
         base.OnInteract();
@@ -19,12 +24,14 @@ public class FishingSpot : AbstractInteractableObject
 
         FindAnyObjectByType<FishingManager>(FindObjectsInactive.Include).currentFishingSpot = this;
         fishingUI.SetActive(true);
-        originalName = displayName;
-        displayName = "";
-        //GameObject.Find("Player").transform.SetPositionAndRotation(playerMoveToFish.position, playerMoveToFish.rotation);
-
 
         ScriptUtils.TakePlayerControl();
     }
 
+
+    void Update()
+    {
+        if (GameVariables.playerCanMove) displayName = originalName;
+        else displayName = "";
+    }
 }

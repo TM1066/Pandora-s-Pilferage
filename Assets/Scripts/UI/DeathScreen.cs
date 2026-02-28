@@ -25,6 +25,8 @@ public class DeathScreen : MonoBehaviour
     IEnumerator WaitAndReturn()
     {
         yield return new WaitForSeconds(3);
+
+        Application.Quit();
         
         SceneManager.LoadScene("Main Menu");
     }
