@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     Vector2 moveVector = Vector2.zero;
-    bool grounded;
+    bool grounded = true;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        grounded = IsGrounded();
         if (!GameVariables.playerCanMove) return;
 
         Debug.Log("Player Grounded: " + grounded);
@@ -109,6 +110,11 @@ public class PlayerMovement : MonoBehaviour
         grounded = false;
     }
 
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Ground")) grounded = true;
+    // }
+
     // void HandleExtraGravity()
     // {
     //     if (!grounded && rig.linearVelocity.y < 0)
@@ -141,18 +147,21 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()
     {
         Vector3 origin = transform.position + Vector3.up * 0.1f;
-        return Physics.SphereCast(
-            origin,
-            groundCheckRadius,
-            Vector3.down,
-            out _,
-            groundCheckDistance,
-            groundLayer
-        );
+        // return Physics.SphereCast(
+        //     origin,
+        //     groundCheckRadius,
+        //     Vector3.down,
+        //     out _,
+        //     groundCheckDistance,
+        //     groundLayer
+        // );
+    
+        return Physics.Raycast(origin, Vector3.down, 2f);
     }
 
-    // void OnDrawGizmos()
-    // {
-    //     Debug.r
-    // }
+    void OnDrawGizmos()
+    {
+        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        Debug.DrawRay(origin, Vector3.down * groundCheckDistance, Color.red);
+    }
 }

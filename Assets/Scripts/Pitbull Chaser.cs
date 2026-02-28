@@ -10,11 +10,20 @@ public class PitbullChaser : MonoBehaviour
    public float minPitch, maxPitch;
 
    public AudioSource controlledAudioSource;
-   void Update()
+   public AudioClip FIREBALLCLIP;
+    void Start()
+    {
+        StartCoroutine(ChasePlayer());
+    }
+
+    void Update()
     {
         // Handle Pitch
         var distanceFromPlayer =  Mathf.InverseLerp(maxDist, minDist, Vector3.Distance(transform.position, playerTrans.position));
         controlledAudioSource.pitch = Mathf.Lerp(minPitch, maxPitch, distanceFromPlayer);
+
+        this.transform.LookAt(playerTrans);
+
     }
 
 
@@ -23,10 +32,19 @@ public class PitbullChaser : MonoBehaviour
     {
         while (true)
         {
-            rig.AddForce((this.transform.position - playerTrans.position) * chaseForce);
+            rig.AddForce((playerTrans.position - this.transform.position) * chaseForce);
             yield return new WaitForSeconds(0.1f);
         }
     }
 
-    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StopAllCoroutines();
+            controlledAudioSource.clip = FIREBALLCLIP;
+            controlledAudioSource.Stop();
+            controlledAudioSource.Play();
+        }
+    }
 }
