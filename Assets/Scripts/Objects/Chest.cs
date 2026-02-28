@@ -28,6 +28,12 @@ public class AbstractChest : AbstractInteractableObject
     public virtual void CurseEffect()
     {
         StartCoroutine(ShowCurseNotification(2));
+
+        foreach (var ActiveIfCurse in GameObject.FindObjectsByType<ActiveIfCurse>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (ActiveIfCurse.curseName == curseName) ActiveIfCurse.gameObject.SetActive(true);
+        }
+
     }
 
 

@@ -11,7 +11,7 @@ using UnityEngine.VFX;
 public class Fish
 {
     public string name;
-    [Range(0f,1f)]
+    [Range(-1f,1f)]
     public float foodWorth;
     public GameObject fishSpawnPrefab;    
 
@@ -27,7 +27,7 @@ public class FishingManager : MonoBehaviour
     public FishingSpot currentFishingSpot;
     public Animator fishAnimator;
     //public SpriteRenderer fishRenderer;
-    public TextMeshProUGUI fishNameText;
+    public TextMeshProUGUI caughtFishText;
     public float fishCheckDelay = 1;
     public float fishChance = 0.25f;
 
@@ -54,10 +54,12 @@ public class FishingManager : MonoBehaviour
     public void ReelInFish()
     {
         reeled = true;
+        splashesEffect.Stop();
         var fish = Instantiate(fishThere.fishSpawnPrefab, fishSpawnTrans);
         fish.transform.position = fishSpawnTrans.position;
 
         currentFishObject = fish;
+        caughtFishText.text = $"Caught {fishThere.name}!";
         fishRodAnimator.SetTrigger("In");
     }
 
@@ -109,17 +111,19 @@ public class FishingManager : MonoBehaviour
             if (reeled)
             {
                 splashesEffect.Stop();
-                yield return new WaitUntil(() => Input.anyKeyDown);
+                //yield return new WaitUntil(() => Input.anyKeyDown);
+                //yield return new WaitForSeconds(3);
                 reeled = false;
                 Destroy(currentFishObject);
 
                 if (GameVariables.cursesActive["Hunger"])
                 {
-                    GameVariables.playerHunger += fishThere.foodWorth;
+                    GameVariables.playerHunger = Mathf.Clamp01(GameVariables.playerHunger + fishThere.foodWorth);
                 }
 
                 fishThere = null;
                 fishRodAnimator.SetTrigger("Out");
+                caughtFishText.text = $"";
                 yield return new WaitForSeconds(fishCheckDelay);
                 continue;
             }
@@ -127,7 +131,6 @@ public class FishingManager : MonoBehaviour
             if (UnityEngine.Random.Range(0f,1f) < fishChance)
             {
                 fishThere = ScriptUtils.GetRandomFromList(currentFishingSpot.possibleFish);
-                fishNameText.text = fishThere.name;
                 splashesEffect.Play();
             }
             else fishThere = null;

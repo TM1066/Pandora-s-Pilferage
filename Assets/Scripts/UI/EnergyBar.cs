@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class EnergyBar : MonoBehaviour
 {
     public Slider slider;
+    public Rigidbody playerRig;
 
     // Update is called once per frame
     void Update()
@@ -21,7 +22,12 @@ public class EnergyBar : MonoBehaviour
     {
         while (true)
         {
-            GameVariables.playerEnergy -= 0.1f;
+            if (playerRig.linearVelocity.sqrMagnitude > 0.01f)
+            {
+                GameVariables.playerEnergy -= 0.1f;
+            }
+            else GameVariables.playerEnergy += 0.1f;
+            
             yield return new WaitForSeconds(3);
         }
     }

@@ -22,7 +22,7 @@ public class HungerBar : MonoBehaviour
         while (true)
         {
             GameVariables.playerHunger -= 0.1f;
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(9);
         }
     }
 }
