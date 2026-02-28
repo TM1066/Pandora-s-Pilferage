@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
 
     public PhysicsMaterial bouncyMat;
     bool bouncied = false;
+
+    List<bool> rigKinematics = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,9 +21,14 @@ public class GameManager : MonoBehaviour
         if (GameVariables.cursesActive["Bouncy"] && !bouncied)
         {
             bouncied = true;
-            foreach (var rig in GameObject.FindObjectsByType<Rigidbody>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (var rig in GameObject.FindObjectsByType<Rigidbody>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID))
             {
-                if (rig.isKinematic) rig.isKinematic = false;
+                if (rig.isKinematic)
+                {
+                    rigKinematics.Add(true);
+                    rig.isKinematic = false;
+                }
+                else rigKinematics.Add(false);
 
                 rig.AddForce(new Vector3(Random.Range(-5,5),Random.Range(-5,5),Random.Range(-5,5)) * 5);
             }
@@ -29,6 +37,15 @@ public class GameManager : MonoBehaviour
             {
                 col.material = bouncyMat;
             }
+        }
+    }
+
+    public void ResetRigs()
+    {
+        var rigs = GameObject.FindObjectsByType<Rigidbody>(FindObjectsInactive.Include, FindObjectsSortMode.InstanceID);
+        for (int i = 0; i < rigs.Length; i++)
+        {
+            rigs[i].isKinematic = rigKinematics[i];
         }
     }
 }
