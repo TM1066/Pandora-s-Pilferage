@@ -7,9 +7,13 @@ public class DeathScreen : MonoBehaviour
 {
     public TextMeshProUGUI deathText;
 
+    bool playerDead = false;
+
 
     public void Die(string cause)
     {
+        if (playerDead) return;
+        playerDead = true;
         this.gameObject.SetActive(true);
         deathText.text = "Cause of Death: " + cause;
     }
