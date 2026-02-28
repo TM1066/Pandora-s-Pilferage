@@ -36,6 +36,7 @@ public class AbstractChest : AbstractInteractableObject
         if (!obtained)
         {
             CurseEffect();
+            GameVariables.cursesActive[curseName] = true;
             obtained = true;
 
             base.OnInteract();

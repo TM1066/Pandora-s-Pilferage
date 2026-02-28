@@ -21,7 +21,7 @@ public class FishingSpot : AbstractInteractableObject
         fishingUI.SetActive(true);
         originalName = displayName;
         displayName = "";
-        GameObject.Find("Player").transform.SetPositionAndRotation(playerMoveToFish.position, playerMoveToFish.rotation);
+        //GameObject.Find("Player").transform.SetPositionAndRotation(playerMoveToFish.position, playerMoveToFish.rotation);
 
 
         ScriptUtils.TakePlayerControl();

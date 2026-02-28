@@ -11,17 +11,11 @@ using UnityEngine.VFX;
 public class Fish
 {
     public string name;
-    public string foodWorth;
+    public int foodWorth;
     public GameObject fishSpawnPrefab;    
 
     public UnityEvent onCatch;
 }
-
-// public class AudioFish : Fish
-// {
-
-    
-// }
 
 
 public class FishingManager : MonoBehaviour
@@ -117,6 +111,12 @@ public class FishingManager : MonoBehaviour
                 yield return new WaitUntil(() => Input.anyKeyDown);
                 reeled = false;
                 Destroy(currentFishObject);
+
+                if (GameVariables.cursesActive["Hunger"])
+                {
+                    GameVariables.playerHunger += fishThere.foodWorth;
+                }
+
                 fishThere = null;
                 fishRodAnimator.SetTrigger("Out");
                 yield return new WaitForSeconds(fishCheckDelay);
