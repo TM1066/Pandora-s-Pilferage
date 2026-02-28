@@ -18,6 +18,7 @@ public static class GameVariables
         {"Hunger", false},
         {"Tired", false},
         {"Bouncy",false},
-        {"Icy",false}
+        {"Icy",false},
+        {"Rage", false}
     };
 }
