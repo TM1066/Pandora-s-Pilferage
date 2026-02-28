@@ -10,7 +10,7 @@ public class DeathScreen : MonoBehaviour
     bool playerDead = false;
 
 
-    public void Die(string cause)
+    public void Die(string cause, int waitTime = 3)
     {
         if (playerDead) return;
         playerDead = true;
@@ -19,12 +19,12 @@ public class DeathScreen : MonoBehaviour
 
         //GameObject.FindAnyObjectByType<GameManager>().ResetRigs();
 
-        StartCoroutine(WaitAndReturn());
+        StartCoroutine(WaitAndReturn(waitTime));
     }
 
-    IEnumerator WaitAndReturn()
+    IEnumerator WaitAndReturn(int waitTime)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(waitTime);
 
         //Application.Quit();
         

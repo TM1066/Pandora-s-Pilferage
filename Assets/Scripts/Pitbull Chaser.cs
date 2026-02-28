@@ -47,7 +47,7 @@ public class PitbullChaser : MonoBehaviour
             controlledAudioSource.Stop();
             controlledAudioSource.Play();
 
-            FindAnyObjectByType<DeathScreen>(FindObjectsInactive.Include).Die(ScriptUtils.GetRandomFromList(new List<string>() {"Mr. WorldWide", "Mr. 305","PitBull","Bullpit","That guy from timber","A FIREBALL", "Armando Christian Perez","The Bald E"}));
+            FindAnyObjectByType<DeathScreen>(FindObjectsInactive.Include).Die(ScriptUtils.GetRandomFromList(new List<string>() {"Mr. WorldWide", "Mr. 305","PitBull","Bullpit","That guy from timber","A FIREBALL", "Armando Christian Perez","The Bald E"}), 25);
         }
     }
 }
