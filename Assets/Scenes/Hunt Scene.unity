@@ -30360,24 +30360,24 @@ MonoBehaviour:
   possibleFish:
   - name: Red Wine Fish
     foodWorth: 0.1
-    scoreWorth: 0
-    alcoholValue: 0
+    scoreWorth: 1
+    alcoholValue: 0.25
     fishSpawnPrefab: {fileID: 8063393991847483158, guid: c1d46efeaf5c87544a583108f41852a1, type: 3}
     onCatch:
       m_PersistentCalls:
         m_Calls: []
   - name: Wine Bottle
     foodWorth: -0.1
-    scoreWorth: 0
-    alcoholValue: 0
+    scoreWorth: 4
+    alcoholValue: 0.35
     fishSpawnPrefab: {fileID: 7255702059763896176, guid: e4f519ac6c0851a42b2cf95e70d387df, type: 3}
     onCatch:
       m_PersistentCalls:
         m_Calls: []
   - name: "Legally Distinct Sponge Guy\u2122\uFE0F\u2122"
-    foodWorth: -0.25
-    scoreWorth: 0
-    alcoholValue: 0
+    foodWorth: -0.137
+    scoreWorth: 6
+    alcoholValue: 0.4
     fishSpawnPrefab: {fileID: 8817296345354584982, guid: 86ba835e49a3f4547a4d904985ab730f, type: 3}
     onCatch:
       m_PersistentCalls:
@@ -126295,24 +126295,24 @@ MonoBehaviour:
   playerMoveToFish: {fileID: 587274246}
   possibleFish:
   - name: Yellow Fish
-    foodWorth: 5
-    scoreWorth: 0
+    foodWorth: 0.229
+    scoreWorth: 2
     alcoholValue: 0
     fishSpawnPrefab: {fileID: 7267788757856418058, guid: 316b98455ccb0734bb0c5ef81c84f8d3, type: 3}
     onCatch:
       m_PersistentCalls:
         m_Calls: []
   - name: Red FIsh
-    foodWorth: 5
-    scoreWorth: 0
+    foodWorth: 0.251
+    scoreWorth: 1
     alcoholValue: 0
     fishSpawnPrefab: {fileID: 8063393991847483158, guid: c1d46efeaf5c87544a583108f41852a1, type: 3}
     onCatch:
       m_PersistentCalls:
         m_Calls: []
   - name: Spear FIsh
-    foodWorth: 10
-    scoreWorth: 0
+    foodWorth: 0.617
+    scoreWorth: 5
     alcoholValue: 0
     fishSpawnPrefab: {fileID: 7968013333988667743, guid: 15820844509b4a445a9145284f121556, type: 3}
     onCatch:
@@ -136894,8 +136894,8 @@ Transform:
   m_GameObject: {fileID: 2134870001}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710707, y: -0, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: 0, y: 2.92, z: 0.84}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 3.0585, z: 0.84}
+  m_LocalScale: {x: 1, y: 1, z: 0.9723}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2083695457}
