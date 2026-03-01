@@ -123,7 +123,7 @@ Material:
     - _ZWrite: 1
     - _foamStrength: 2.31
     - _rippleAmount: 5
-    - _vertexOffset: -0.08
+    - _vertexOffset: -0.15
     - _voronoiSpeed: 3.55
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
