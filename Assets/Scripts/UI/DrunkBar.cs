@@ -51,7 +51,7 @@ public class DrunkBar : MonoBehaviour
         while (true)
         {
             GameVariables.playerDrunkenness -= 0.1f;
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5 / GameVariables.playerDrunkenness);
         }
     }
 }

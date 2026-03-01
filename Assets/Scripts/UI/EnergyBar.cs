@@ -30,7 +30,7 @@ public class EnergyBar : MonoBehaviour
             }
             else GameVariables.playerEnergy += 0.1f;
             
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3 / GameVariables.playerEnergy);
         }
     }
 }

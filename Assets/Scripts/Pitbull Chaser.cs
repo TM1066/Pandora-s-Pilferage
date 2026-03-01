@@ -45,7 +45,7 @@ public class PitbullChaser : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !GameVariables.cursesActive["Rage"])
         {
             StopAllCoroutines();
             controlledAudioSource.clip = FIREBALLCLIP;
@@ -54,5 +54,6 @@ public class PitbullChaser : MonoBehaviour
 
             FindAnyObjectByType<DeathScreen>(FindObjectsInactive.Include).Die(ScriptUtils.GetRandomFromList(new List<string>() {"Mr. WorldWide", "Mr. 305","PitBull","Bullpit","That guy from timber","A FIREBALL", "Armando Christian Perez","The Bald E"}), 25);
         }
+        else if (collision.gameObject.CompareTag("Player") && GameVariables.cursesActive["Rage"]) Destroy(this.gameObject);
     }
 }
