@@ -4,7 +4,7 @@ public class WinCollider : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             FindAnyObjectByType<GameManager>().WinGame();
         }

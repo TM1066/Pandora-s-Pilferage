@@ -33,7 +33,12 @@ public class PitbullChaser : MonoBehaviour
     {
         while (true)
         {
-            rig.AddForce((playerTrans.position - this.transform.position) * chaseForce);
+            if (!GameVariables.cursesActive["Rage"])
+            {
+                rig.AddForce((playerTrans.position - this.transform.position) * chaseForce);
+            }
+            else rig.AddForce((playerTrans.position + this.transform.position) * chaseForce);
+            
             yield return new WaitForSeconds(0.1f);
         }
     }
