@@ -20,7 +20,7 @@ public class FishingSpot : AbstractInteractableObject
     {
         base.OnInteract();
 
-        if (GameVariables.playerFishing) return;
+        if (!GameVariables.playerCanFish) return;
 
         FindAnyObjectByType<FishingManager>(FindObjectsInactive.Include).currentFishingSpot = this;
         fishingUI.SetActive(true);

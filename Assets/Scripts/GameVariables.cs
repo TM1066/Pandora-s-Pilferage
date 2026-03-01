@@ -6,7 +6,7 @@ public static class GameVariables
 {
     public static TimeSpan gameTimer = new TimeSpan(0, 3, 0);
 
-    public static bool playerCanMove = true, playerCanLook = true, playerFishing = false;
+    public static bool playerCanMove = true, playerCanLook = true, playerFishing = false, playerCanFish = true;
 
     public static bool playerHasHunger = false, playerHasEnergy = false;
     public static float playerHunger = 1, playerEnergy = 1, playerScore = 0, playerDrunkenness = 1;
@@ -22,6 +22,7 @@ public static class GameVariables
         {"Rage", false},
         {"Pitbull",false},
         {"Competition",false},
-        {"Drunk",false}
+        {"Drunk",false},
+        {"Hope",false}
     };
 }

@@ -20,6 +20,9 @@ public class PlayerInteract : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.F)) currentlySelected.Interact();
+
+
         if (currentlySelected) objectDisplayText.text = currentlySelected.displayName;
         else objectDisplayText.text = "";
 

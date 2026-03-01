@@ -97,7 +97,16 @@ public class FishingManager : MonoBehaviour
 
         fishRod.SetActive(false);
 
+        GameVariables.playerCanFish = false;
+        FindAnyObjectByType<GameManager>().StartCoroutine(FishingCooldown());
+
         this.transform.gameObject.SetActive(false);
+    }
+
+    IEnumerator FishingCooldown()
+    {
+        yield return new WaitForSeconds(3);
+        GameVariables.playerCanFish = true;
     }
 
     public void Update()
