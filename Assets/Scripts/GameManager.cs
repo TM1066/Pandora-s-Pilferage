@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +39,17 @@ public class GameManager : MonoBehaviour
                 col.material = bouncyMat;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Main Menu");
+        }
+
+    }
+
+    public void WinGame()
+    {
+        
     }
 
     // public void ResetRigs()
