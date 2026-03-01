@@ -14,7 +14,7 @@ public class ExitDoor : MonoBehaviour
         {
             if (value) cursesObtained++;
         }
-        if (cursesObtained >= 5)
+        if (cursesObtained >= 5 && GameVariables.cursesActive["Hope"])
         {
             gateBars.SetActive(false);
             winGameCollider.SetActive(true);
