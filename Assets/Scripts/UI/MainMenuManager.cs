@@ -14,7 +14,8 @@ public class MainMenuManager : MonoBehaviour
             {"Icy",false},
             {"Rage", false},
             {"Pitbull",false},
-            {"Competition",false}
+            {"Competition",false},
+            {"Drunk",false}
         };
 
         GameVariables.playerHunger = 1;

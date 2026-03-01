@@ -14,6 +14,8 @@ public class Fish
     [Range(-1f,1f)]
     public float foodWorth;
     public int scoreWorth;
+    [Range(0,1f)]
+    public float alcoholValue = 0;
     public GameObject fishSpawnPrefab;    
 
     public UnityEvent onCatch;
@@ -120,9 +122,13 @@ public class FishingManager : MonoBehaviour
                 if (GameVariables.cursesActive["Hunger"])
                 {
                     GameVariables.playerHunger = Mathf.Clamp01(GameVariables.playerHunger + fishThere.foodWorth);
-                    GameVariables.playerScore += fishThere.scoreWorth;
+                }
+                if (GameVariables.cursesActive["Drunk"])
+                {
+                    GameVariables.playerDrunkenness = Mathf.Clamp01(GameVariables.playerDrunkenness + fishThere.alcoholValue);
                 }
 
+                GameVariables.playerScore += fishThere.scoreWorth;
                 fishThere = null;
                 fishRodAnimator.SetTrigger("Out");
                 caughtFishText.text = $"";

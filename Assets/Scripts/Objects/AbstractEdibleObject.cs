@@ -4,6 +4,8 @@ public class AbstractEdibleObject : AbstractInteractableObject
 {
     [Range(0f,1f)]
     public float foodWorth = 0.1f;
+    [Range(0f,1f)]
+    public float alcoholWorth = 0;
     public int scoreWorth = 1;
 
 
@@ -16,7 +18,11 @@ public class AbstractEdibleObject : AbstractInteractableObject
             GameVariables.playerScore += scoreWorth;
             Destroy(this.gameObject);
         }
+        if (GameVariables.cursesActive["Drunk"])
+        {
+            GameVariables.playerDrunkenness = Mathf.Clamp01(GameVariables.playerDrunkenness + alcoholWorth);
+            GameVariables.playerScore += scoreWorth;
+            Destroy(this.gameObject);
+        }
     }
-
-    
 }
