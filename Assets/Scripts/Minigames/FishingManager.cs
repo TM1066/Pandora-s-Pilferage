@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Events;
 using Unity.VisualScripting;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 [Serializable]
 public class Fish
@@ -42,6 +43,9 @@ public class FishingManager : MonoBehaviour
 
     public Rigidbody playerRig;
 
+    public AudioSource hitmarkerAudio;
+    public Image hitmarkerRenderer;
+
     public void TryReelFish()
     {
         if (fishThere != null && !reeled)
@@ -54,8 +58,21 @@ public class FishingManager : MonoBehaviour
         }
     }
 
+    IEnumerator HitMarker()
+    {
+        hitmarkerRenderer.enabled = true;
+        hitmarkerAudio.Play();
+
+        while (hitmarkerAudio.isPlaying) yield return null;
+
+        hitmarkerRenderer.enabled = false;
+        hitmarkerAudio.Stop();
+    }
+
     public void ReelInFish()
     {
+        StartCoroutine(HitMarker());
+
         reeled = true;
         splashesEffect.Stop();
         var fish = Instantiate(fishThere.fishSpawnPrefab, fishSpawnTrans);
