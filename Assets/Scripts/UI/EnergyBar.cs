@@ -24,11 +24,11 @@ public class EnergyBar : MonoBehaviour
     {
         while (true)
         {
-            if (playerRig.linearVelocity.sqrMagnitude > 0.01f)
+            if (playerRig.linearVelocity.sqrMagnitude > 0.1f)
             {
                 GameVariables.playerEnergy -= 0.1f;
             }
-            else GameVariables.playerEnergy += 0.1f;
+            else GameVariables.playerEnergy += 0.5f;
             
             yield return new WaitForSeconds(3 / GameVariables.playerEnergy);
         }
