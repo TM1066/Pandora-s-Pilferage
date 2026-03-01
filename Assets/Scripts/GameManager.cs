@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        
+        FindAnyObjectByType<DeathScreen>().Die("Winning!!");
     }
 
     // public void ResetRigs()
