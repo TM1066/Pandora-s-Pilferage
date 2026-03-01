@@ -13,6 +13,11 @@ public class AbstractChest : AbstractInteractableObject
     public Renderer curseOrbRenderer;
 
     bool obtained = false;
+    [ContextMenu("Open")]
+    public void Open()
+    {
+        interactEvents.Invoke();
+    }
 
 
 
