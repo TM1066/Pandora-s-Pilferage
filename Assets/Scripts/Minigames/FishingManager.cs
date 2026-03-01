@@ -60,13 +60,13 @@ public class FishingManager : MonoBehaviour
 
     IEnumerator HitMarker()
     {
-        hitmarkerRenderer.enabled = true;
+        hitmarkerRenderer.gameObject.SetActive(true);
         hitmarkerAudio.Play();
 
         while (hitmarkerAudio.isPlaying) yield return null;
 
         hitmarkerRenderer.enabled = false;
-        hitmarkerAudio.Stop();
+        hitmarkerRenderer.gameObject.SetActive(false);
     }
 
     public void ReelInFish()

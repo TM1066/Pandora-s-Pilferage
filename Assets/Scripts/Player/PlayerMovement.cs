@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         grounded = IsGrounded();
         if (!GameVariables.playerCanMove) return;
 
-        Debug.Log("Player Grounded: " + grounded);
+        //Debug.Log("Player Grounded: " + grounded);
     }
     // Handle physics stuff here for
     // cohesion across frame rates

@@ -12,4 +12,14 @@ public class WinCollider : MonoBehaviour
             winScreen.SetActive(true);
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("EXIT HIT");
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            FindAnyObjectByType<GameManager>().WinGame();
+            winScreen.SetActive(true);
+        }
+    }
 }

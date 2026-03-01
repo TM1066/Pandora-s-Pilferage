@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         GameVariables.highScore = System.Math.Max(GameVariables.highScore, GameVariables.playerScore);
-        FindAnyObjectByType<DeathScreen>().Die("Winning!!");
+        //FindAnyObjectByType<DeathScreen>().Die("Winning!!");
     }
 
     // public void ResetRigs()
